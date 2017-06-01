@@ -1,0 +1,16 @@
+parameters:
+    samirboulil_extras.connector.processor.mass_edit.product.translate_product_value.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Job\Processor\TranslateProductValueWithProposalProcessor
+
+services:
+    samirboulil_extras.mass_edit.translate_product_value.processor:
+        class: '%samirboulil_extras.connector.processor.mass_edit.product.translate_product_value.class%'
+        arguments:
+            - '@pim_catalog.validator.product'
+            - '@oro_user.manager'
+            - '@security.authorization_checker'
+            - '@security.token_storage'
+            - '@samirboulil_extras.api.factory.translate_client'
+            - '@pim_catalog.updater.product'
+            - '@pim_catalog.repository.channel'
+            - '@pim_catalog.repository.locale'
+            - '@pim_catalog.saver.product'

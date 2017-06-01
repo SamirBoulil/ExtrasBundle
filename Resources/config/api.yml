@@ -1,0 +1,9 @@
+parameters:
+    samirboulil_extras.api.factory.translate_client.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Api\TranslateClientFactory
+
+services:
+    samirboulil_extras.api.factory.translate_client:
+        class: '%samirboulil_extras.api.factory.translate_client.class%'
+        arguments:
+            - '%translation_client_key%'
+            - '%translation_pro'

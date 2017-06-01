@@ -1,0 +1,12 @@
+parameters:
+    samirboulil_extras.form.type.translate_products.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Form\Type\TranslateProductsType
+
+services:
+    samirboulil_extras.form.type.translate_products:
+        class: '%samirboulil_extras.form.type.translate_products.class%'
+        arguments:
+            - '@pim_catalog.repository.locale'
+            - '%samirboulil_extras.form.mass_edit_action.translate_products.class%'
+            - '%pim_catalog.entity.locale.class%'
+        tags:
+            - { name: form.type, alias: samirboulil_extras_mass_translate_products }
