@@ -1,0 +1,11 @@
+parameters:
+    samirboulil_extras.job.job_parameters.default_values_provider.translate_products.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Job\JobParameters\DefaultValuesProvider\TranslateProducts
+
+services:
+    samirboulil_extras.job.job_parameters.default_values_provider.translate_products:
+        class: '%samirboulil_extras.job.job_parameters.default_values_provider.translate_products.class%'
+        arguments:
+            -
+                - 'translate_products'
+        tags:
+            - { name: akeneo_batch.job.job_parameters.default_values_provider }

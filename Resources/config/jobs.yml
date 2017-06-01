@@ -1,0 +1,14 @@
+parameters:
+    samirboulil_extras.job_name.translate_products: 'translate_products'
+
+services:
+    samirboulil_extras.job.translate_products:
+        class: '%pim_connector.job.simple_job.class%'
+        arguments:
+            - '%samirboulil_extras.job_name.translate_products%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@samirboulil_extras.step.translate_products'
+        tags:
+            - { name: akeneo_batch.job, connector: '%pim_enrich.connector_name.mass_edit%', type: '%pim_enrich.job.mass_edit_type%' }

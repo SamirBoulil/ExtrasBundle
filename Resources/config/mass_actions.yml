@@ -1,0 +1,18 @@
+parameters:
+    samirboulil_extras.form.mass_edit_action.translate_products.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Form\MassEditAction\TranslateProducts
+
+services:
+    samirboulil_extras.form.mass_edit_action.translate_products:
+        public: false
+        class: '%samirboulil_extras.form.mass_edit_action.translate_products.class%'
+        arguments:
+            - 'translate_products'
+            - '@pim_catalog.repository.attribute'
+            - '@pim_enrich.repository.locale'
+        tags:
+            -
+                name: pim_enrich.mass_edit_action
+                alias: translate-products
+                datagrid: product-grid
+                operation_group: mass-edit
+                acl: pim_enrich_product_edit_attributes

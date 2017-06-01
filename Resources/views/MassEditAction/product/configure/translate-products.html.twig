@@ -1,0 +1,71 @@
+{% extends 'PimEnrichBundle:MassEditAction:product/configure.html.twig' %}
+
+{% block head_script %}
+    {{ parent() }}
+    {% if itemsCount == 0 %}
+        <script type="text/javascript">
+            require(
+                ['jquery'],
+                function ($) {
+                    'use strict';
+                    $(function () {
+                        $('a.next').hide();
+                    });
+                }
+            );
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block formContent %}
+    {% if itemsCount == 0 %}
+        {% set alertClass = 'AknMessageBox--error' %}
+        {% set alertMessage = 'pim_enrich.mass_edit_action.translate-products.message.error'|trans %}
+    {% else %}
+        {% set alertClass = '' %}
+        {% set alertMessage = 'pim_enrich.mass_edit_action.translate-products.message.info'|trans({'%nbProducts%': itemsCount}) %}
+    {% endif %}
+
+    <div class="row-fluid">
+        <div class="AknMessageBox {{ alertClass }}">
+            {{ alertMessage }}
+        </div>
+    </div>
+    {{ form_start(form, {
+        'class': 'hide',
+        'attr': {
+            'data-title': 'Add attributes'|trans,
+            'data-empty-text': 'info.product.no available attributes'|trans,
+            'data-placeholder': 'Search'|trans,
+            'data-target': '#attribute-buttons',
+            'data-save-button': 'Add'|trans,
+            'data-classes': 'ui-multiselect--select2',
+        }
+    }) }}
+    <div class="row-fluid">
+        <p>Origin locale: TO TRANSLATE</p>
+        {{ form_widget(form.operation.originLocale) }}
+    </div>
+    <div class="row-fluid">
+        <p>Translated locales: TO TRANSLATE</p>
+        {{ form_widget(form.operation.locales) }}
+    </div>
+    <hr/>
+    <div class="row-fluid">
+        <p>Select the attributes to translates:</p>
+        <script type="text/javascript">
+            require(
+                ['jquery', 'pim/popinform'],
+                function($, PopinForm){
+                    'use strict';
+                    $(function() {
+                        new PopinForm('{{ form.vars.id }}');
+                    });
+                }
+            );
+        </script>
+        {{ form_widget(form.operation.localizableAttributes) }}
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}

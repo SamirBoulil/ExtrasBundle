@@ -1,0 +1,11 @@
+parameters:
+    samirboulil_extras.connector.job.job_parameters.constraint_collection_provider.translate_products.class: SamirBoulil\Bundle\AutomaticTranslationBundle\Job\JobParameters\ConstraintCollectionProvider\TranslateProducts
+
+services:
+    samirboulil_extras.connector.job.job_parameters.constraint_collection_provider.translate_products:
+        class: '%samirboulil_extras.connector.job.job_parameters.constraint_collection_provider.translate_products.class%'
+        arguments:
+            -
+                - 'translate_products'
+        tags:
+            - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }

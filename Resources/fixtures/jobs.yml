@@ -1,0 +1,6 @@
+jobs:
+    translate_products:
+        connector: Akeneo Mass Edit Connector
+        alias:     translate_products
+        label:     Mass translate products
+        type:      mass_edit

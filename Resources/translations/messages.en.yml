@@ -1,0 +1,9 @@
+pim_enrich:
+    mass_edit_action:
+        translate-products:
+            label: Mass translate products
+            description: Translate your product information using Google translate API
+            launched-flash: The translation of your product is in
+            message:
+                info: You are about to change your product information
+                error: There was no product selected for the mass action. Please select some products before performing the mass action.

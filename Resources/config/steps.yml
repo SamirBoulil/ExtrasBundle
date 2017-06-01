@@ -1,0 +1,12 @@
+services:
+    samirboulil_extras.step.translate_products:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'translate_products'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_connector.reader.database.product'
+            - '@samirboulil_extras.mass_edit.translate_product_value.processor'
+            - '@pim_connector.writer.database.product'
+            - 100
+
