@@ -30,8 +30,8 @@ class TranslateProducts implements DefaultValuesProviderInterface
     public function getDefaultValues()
     {
         return [
-            'filters' => null,
-            'actions' => null
+            'filters' => [],
+            'actions' => []
         ];
     }
 
