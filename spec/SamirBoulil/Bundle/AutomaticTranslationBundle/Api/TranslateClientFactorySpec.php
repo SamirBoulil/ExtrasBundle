@@ -16,8 +16,4 @@ class TranslateClientFactorySpec extends ObjectBehavior
     {
         $this->shouldHaveType(TranslateClientFactory::class);
     }
-
-    function it_creates_a_translate_client()
-    {
-    }
 }

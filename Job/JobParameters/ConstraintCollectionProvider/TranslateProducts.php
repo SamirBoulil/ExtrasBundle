@@ -14,6 +14,7 @@ namespace SamirBoulil\Bundle\AutomaticTranslationBundle\Job\JobParameters\Constr
 use Akeneo\Component\Batch\Job\JobInterface;
 use Akeneo\Component\Batch\Job\JobParameters\ConstraintCollectionProviderInterface;
 use Symfony\Component\Validator\Constraints\Collection;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
 
 /**
@@ -45,10 +46,10 @@ class TranslateProducts implements ConstraintCollectionProviderInterface
                 'fields' => [
                     'filters' => new NotNull(),
                     'actions' => [
-                        'channel_codes'    => new NotNull(),
-                        'from_locale_code' => new NotNull(),
-                        'to_locale_codes'  => new NotNull(),
-                        'attribute_codes'  => new NotNull(),
+                        'channel_codes'    => new NotBlank(),
+                        'from_locale_code' => new NotBlank(),
+                        'to_locale_codes'  => new NotBlank(),
+                        'attribute_codes'  => new NotBlank(),
                     ],
                 ],
             ]

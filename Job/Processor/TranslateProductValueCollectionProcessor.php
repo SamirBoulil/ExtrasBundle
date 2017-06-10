@@ -114,7 +114,7 @@ class TranslateProductValueCollectionProcessor extends AbstractProcessor
 
         $this->CheckLocaleCodes([$fromLocaleCode]);
         $this->CheckLocaleCodes($toLocaleCodes);
-        $this->checkChannelCodes($channelCodes);
+        $this->checkChannelCodes($channelCodes, $fromLocaleCode, $toLocaleCodes);
         $this->checkAttributeCodes($attributeCodes);
 
         $toTranslateProductValueCollection = $this->getProductValuesToTranslate($product->getValues());
@@ -141,7 +141,7 @@ class TranslateProductValueCollectionProcessor extends AbstractProcessor
     private function checkLocaleCodes(array $localeCodes)
     {
         foreach ($localeCodes as $localeCode) {
-            $locale = $this->localeRepository->findOneBy(['code' => $localeCode])
+            $locale = $this->localeRepository->findOneBy(['code' => $localeCode]);
             if (null === $locale) {
                 // Todo: Throw error
             }
@@ -158,15 +158,22 @@ class TranslateProductValueCollectionProcessor extends AbstractProcessor
      *
      * @throws
      */
-    private function checkChannelCodes(array $channelCodes)
+    private function checkChannelCodes(array $channelCodes, $fromLocaleCode, array $toLocaleCodes)
     {
         foreach ($channelCodes as $channelCode) {
             $channel = $this->channelRepository->findOneByCode($channelCode);
             if (null === $channel) {
                 // Todo: Throw error
             }
-            if (false === $channel->isActivated()) {
-                // Todo: Throw error
+
+            $channelLocales = $channel->getLocaleCodes();
+            if (!in_array($fromLocaleCode, $channelLocales)) {
+                // Todo: throw error from locale does not exist for channel
+            }
+
+            $unSupportedLocales = array_diff($toLocaleCodes, $channelLocales);
+            if (0 < count($unSupportedLocales)) {
+                // Todo: throw warning: unsported locale for channel
             }
         }
     }
