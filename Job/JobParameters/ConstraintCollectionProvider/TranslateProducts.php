@@ -13,11 +13,8 @@ namespace SamirBoulil\Bundle\AutomaticTranslationBundle\Job\JobParameters\Constr
 
 use Akeneo\Component\Batch\Job\JobInterface;
 use Akeneo\Component\Batch\Job\JobParameters\ConstraintCollectionProviderInterface;
-use Pim\Component\Catalog\Validator\Constraints\IsString;
 use Symfony\Component\Validator\Constraints\Collection;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\NotNull;
-use Symfony\Component\Validator\Constraints\Type;
 
 /**
  * Constraints for mass publish.
@@ -47,8 +44,13 @@ class TranslateProducts implements ConstraintCollectionProviderInterface
             [
                 'fields' => [
                     'filters' => new NotNull(),
-                    'actions' => []
-                ]
+                    'actions' => [
+                        'channel_codes'    => new NotNull(),
+                        'from_locale_code' => new NotNull(),
+                        'to_locale_codes'  => new NotNull(),
+                        'attribute_codes'  => new NotNull(),
+                    ],
+                ],
             ]
         );
     }

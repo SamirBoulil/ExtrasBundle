@@ -107,8 +107,8 @@ class TranslateProductValueCollectionProcessor extends AbstractProcessor
 //      $this->tokenStorage->setToken($token);
 
         $actions = $this->getConfiguredActions();
-        $fromLocaleCode = $actions['from_locale'];
-        $toLocaleCodes = $actions['to_locales'];
+        $fromLocaleCode = $actions['from_locale_code'];
+        $toLocaleCodes = $actions['to_locale_codes'];
         $channelCodes = $actions['channel_codes'];
         $attributeCodes = $actions['attribute_codes'];
 

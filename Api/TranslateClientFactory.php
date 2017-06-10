@@ -31,13 +31,12 @@ class TranslateClientFactory implements SimpleFactoryInterface
      */
     public function create()
     {
-        if (null === $this->apiKeyFilePath  || '' === $this->apiKeyFilePath) {
+        if (null === $this->apiKeyFilePath || '' === $this->apiKeyFilePath) {
             throw new \LogicException('API key not provided');
         }
 
         return new TranslateClient([
             'keyFilePath' => $this->apiKeyFilePath,
-//            'keyFilePath' => '/Users/Samir/Workspace/akeneo/translation/encore.json'
         ]);
     }
 }
