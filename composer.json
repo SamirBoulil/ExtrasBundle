@@ -1,7 +1,6 @@
 {
   "name": "akeneo/pim-enterprise-dev",
     "description": "Akeneo PIM, Enterprise Edition Bundles",
-    "license": "proprietary",
     "type": "project",
     "license": "MIT",
     "authors": [
@@ -11,11 +10,27 @@
     }
   ],
     "require": {
-      "php": ">=7.0.15",
+      "php": ">=5.6.30",
+      "phpspec/phpspec": "^3.0",
+      "akeneo/pim-community-dev": "~1.7.4",
       "google/cloud": "^0.21.1"
     },
     "require-dev": {
-      "phpspec/phpspec": "3.0.*"
+      "phpspec/phpspec": "^3.4"
+    },
+    "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/akeneo/pim-community-dev.git",
+      "branch": "master"
+    }
+  ],
+    "config": {
+      "bin-dir": "bin"
+    },
+    "autoload": {
+      "psr-4": {
+        "SamirBoulil\\Bundle\\AutomaticTranslationBundle\\": ""
+      }
     }
 }
-

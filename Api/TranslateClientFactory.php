@@ -6,7 +6,7 @@ use Akeneo\Component\StorageUtils\Factory\SimpleFactoryInterface;
 use Google\Cloud\Translate\TranslateClient;
 
 /**
- * Instantiates a client API
+ * Instantiates a client API to talk with
  *
  * @author    Samir Boulil <samir.boulil@akeneo.com>
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
@@ -14,28 +14,29 @@ use Google\Cloud\Translate\TranslateClient;
 class TranslateClientFactory implements SimpleFactoryInterface
 {
     /** @var string */
-    protected $apiKey;
+    protected $apiKeyFilePath;
 
-    /** @var string */
-    protected $projectId;
-
-    public function __construct($apiKey, $projectId)
+    /**
+     * They key is a file generated from the Google webservices.
+     *
+     * @param $apiKeyFilePath
+     */
+    public function __construct($apiKeyFilePath)
     {
-        $this->apiKey = $apiKey;
-        $this->projectId = $projectId;
+        $this->apiKeyFilePath = $apiKeyFilePath;
     }
 
     /**
-     * @return object
+     * @return TranslateClient
      */
     public function create()
     {
-        if (null === $this->apiKey  || '' === $this->apiKey) {
+        if (null === $this->apiKeyFilePath || '' === $this->apiKeyFilePath) {
             throw new \LogicException('API key not provided');
         }
 
         return new TranslateClient([
-            'keyFilePath' => '/Users/Samir/Workspace/akeneo/translation/encore.json'
+            'keyFilePath' => $this->apiKeyFilePath,
         ]);
     }
 }
